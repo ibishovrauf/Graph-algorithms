@@ -1,3 +1,4 @@
+from math import sqrt
 from .Edge import Edge
 
 class Node:
@@ -88,3 +89,21 @@ class Node:
             str: A string representation of the node.
         """
         return "Node " + self.value
+
+
+
+class Node2D(Node):
+    def __init__(self, value, x, y) -> None:
+        super().__init__(value)
+        self.x = x
+        self.y = y
+
+    def add_neighbor(self, node: Node) -> None:
+        edge = Edge(self, node, weight = self.distance(node))
+        self.outgoing_edges[node] = edge
+        node.incoming_edges[self] = edge
+        self.incoming_edges[node] = edge
+        node.outgoing_edges[self] = edge
+
+    def distance(self, node) -> float:
+        return sqrt((self.x - node.x)**2 + (self.y - node.y))

@@ -1,4 +1,4 @@
-from .Node import Node
+from .Node import Node, Node2D
 
 class Graph:
     def __init__(self, directed: bool = True, weighted: bool = False):
@@ -106,3 +106,16 @@ class Graph:
             bool: True if the graph is weighted, False otherwise.
         """
         return self.weighted
+
+
+class Graph2D(Graph):
+    def __init__(self):
+        super().__init__(True, True)
+    
+    def add_node(self, value: str, x: int, y: int):
+        new_node = Node2D(value, x, y)
+        for node in self.nodes:
+            self.add_edge(node, new_node)
+        
+    def add_edge(self, node1: 'Node', node2: 'Node'):
+        node1.add_neighbor(node2)
