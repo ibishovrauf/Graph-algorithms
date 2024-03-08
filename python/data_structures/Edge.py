@@ -18,3 +18,8 @@ class Edge:
         if self.is_weighted:
             return self.weight
         return "The Edge is not weighted"
+
+    def __str__(self) -> str:
+        if self.directed:
+            return str(self.node_1) + "->" + str(self.node_2)
+        return str(self.node_1) + "<->" + str(self.node_2)
