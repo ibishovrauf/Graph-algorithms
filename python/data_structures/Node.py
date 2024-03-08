@@ -92,18 +92,55 @@ class Node:
 
 
 
+from math import sqrt
+
 class Node2D(Node):
+    """A node in a 2D graph."""
+
     def __init__(self, value, x, y) -> None:
+        """
+        Initialize a 2D node.
+
+        Initializes the node with a value and its coordinates.
+
+        Parameters:
+            value: The value of the node.
+            x: The x-coordinate of the node.
+            y: The y-coordinate of the node.
+
+        Returns:
+            None
+        """
         super().__init__(value)
         self.x = x
         self.y = y
 
     def add_neighbor(self, node: Node) -> None:
-        edge = Edge(self, node, weight = self.distance(node))
+        """
+        Add a neighbor to the node.
+
+        Creates an edge between this node and the given node, and adds it to both nodes.
+
+        Parameters:
+            node (Node): The node to connect as a neighbor.
+
+        Returns:
+            None
+        """
+        edge = Edge(self, node, weight=self.distance(node))
         self.outgoing_edges[node] = edge
         node.incoming_edges[self] = edge
         self.incoming_edges[node] = edge
         node.outgoing_edges[self] = edge
 
     def distance(self, node) -> float:
-        return sqrt((self.x - node.x)**2 + (self.y - node.y))
+        """
+        Calculate the Euclidean distance between this node and another node.
+
+        Parameters:
+            node (Node): The other node to calculate distance to.
+
+        Returns:
+            float: The Euclidean distance between this node and the given node.
+        """
+        return sqrt((self.x - node.x) ** 2 + (self.y - node.y) ** 2)

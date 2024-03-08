@@ -13,7 +13,7 @@ class Graph:
         self.weighted = weighted
         self.nodes = {}
 
-    def add_node(self, value: str):
+    def add_node(self, value):
         """
         Add a node to the graph.
 
@@ -109,13 +109,52 @@ class Graph:
 
 
 class Graph2D(Graph):
+    """A 2D graph representation inheriting from Graph class."""
+
     def __init__(self):
+        """
+        Initialize a 2D graph.
+
+        Initializes the 2D graph with width and height parameters set to True.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         super().__init__(True, True)
     
     def add_node(self, value: str, x: int, y: int):
+        """
+        Add a new node to the graph with its coordinates.
+
+        This method creates a new node with the given value and coordinates, and then connects it
+        to all existing nodes in the graph.
+
+        Parameters:
+            value (str): The value of the new node.
+            x (int): The x-coordinate of the new node.
+            y (int): The y-coordinate of the new node.
+
+        Returns:
+            None
+        """
         new_node = Node2D(value, x, y)
         for node in self.nodes:
             self.add_edge(node, new_node)
         
     def add_edge(self, node1: 'Node', node2: 'Node'):
+        """
+        Add an edge between two nodes in the graph.
+
+        This method adds an edge between the given nodes by making one node a neighbor of the other.
+
+        Parameters:
+            node1 (Node): The first node.
+            node2 (Node): The second node.
+
+        Returns:
+            None
+        """
         node1.add_neighbor(node2)
