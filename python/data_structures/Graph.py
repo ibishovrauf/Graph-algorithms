@@ -107,6 +107,8 @@ class Graph:
         """
         return self.weighted
 
+    def get_node(self, value):
+        return self.nodes[value]
 
 class Graph2D(Graph):
     """A 2D graph representation inheriting from Graph class."""

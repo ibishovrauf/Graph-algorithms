@@ -10,6 +10,7 @@ class Node:
             value: The value of the node.
         """
         self.value = value
+        self.visited = False
         self.outgoing_edges = {}
         self.incoming_edges = {}
     
@@ -80,6 +81,12 @@ class Node:
             list: A list of outgoing edges.
         """
         return list(self.outgoing_edges.values())
+    
+    def is_visited(self) -> bool:
+        return self.visited
+    
+    def visit(self) -> None:
+        self.visited = True
     
     def __str__(self) -> str:
         """

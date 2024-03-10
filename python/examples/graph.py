@@ -1,30 +1,20 @@
-from data_structures import Graph
+from data_structures import Graph2D
+from visulization import save_graph
 
 def main():
-    # Create a weighted graph
-    graph = Graph(directed=True, weighted=True)
+    graph = Graph2D()
 
     # Add nodes to the graph
-    graph.add_node("A")
-    graph.add_node("B")
-    graph.add_node("C")
-    graph.add_node("D")
+    graph.add_node("A", x=-1, y=1)
+    graph.add_node("B", x=0, y=0)
+    graph.add_node("C", x=0, y=1)
+    graph.add_node("D", x=0, y=-1)
+    graph.add_node("F", x=1, y=-1)
+    graph.add_node("E", x=-1, y=0)
 
-    # Add weighted edges to the graph
-    graph.add_edge("A", "B", weight=5)
-    graph.add_edge("B", "C", weight=7)
-    graph.add_edge("C", "D", weight=3)
-    graph.add_edge("D", "A", weight=2)
-
-    # Test various functions
     print("Nodes:", graph.get_nodes())
     print("Edges:", graph.get_edges())
-    print("Neighbors of A:")
-    for i in graph.get_neighbors("A"):
-        print(str(i))
-    print("Edge weight between A and B:", graph.get_edge_weight("A", "B"))
-    print("Is graph directed?", graph.is_directed())
-    print("Is graph weighted?", graph.is_weighted())
+    save_graph(graph, "test.pkl")
 
 if __name__ == "__main__":
     main()
