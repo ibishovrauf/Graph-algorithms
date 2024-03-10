@@ -127,7 +127,7 @@ class Node2D(Node):
         Returns:
             None
         """
-        edge = Edge(self, node, weight=self.distance(node))
+        edge = Edge(self, node, weight=self.distance(node), weighted=True, directed=False)
         self.outgoing_edges[node] = edge
         node.incoming_edges[self] = edge
         self.incoming_edges[node] = edge

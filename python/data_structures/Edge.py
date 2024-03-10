@@ -56,3 +56,9 @@ class Edge:
         if self.directed:
             return str(self.node_1) + "->" + str(self.node_2)
         return str(self.node_1) + "<->" + str(self.node_2)
+
+    def get_node1(self):
+        return self.node_1.value
+    
+    def get_node2(self):
+        return self.node_2.value
