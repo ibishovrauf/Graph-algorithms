@@ -10,6 +10,7 @@ class Node:
             value: The value of the node.
         """
         self.value = value
+        self.visited = False
         self.outgoing_edges = {}
         self.incoming_edges = {}
     
@@ -81,6 +82,12 @@ class Node:
         """
         return list(self.outgoing_edges.values())
     
+    def is_visited(self) -> bool:
+        return self.visited
+    
+    def visit(self) -> None:
+        self.visited = True
+    
     def __str__(self) -> str:
         """
         Get a string representation of the node.
@@ -127,7 +134,7 @@ class Node2D(Node):
         Returns:
             None
         """
-        edge = Edge(self, node, weight=self.distance(node))
+        edge = Edge(self, node, weight=self.distance(node), weighted=True, directed=False)
         self.outgoing_edges[node] = edge
         node.incoming_edges[self] = edge
         self.incoming_edges[node] = edge

@@ -107,6 +107,8 @@ class Graph:
         """
         return self.weighted
 
+    def get_node(self, value):
+        return self.nodes[value]
 
 class Graph2D(Graph):
     """A 2D graph representation inheriting from Graph class."""
@@ -141,8 +143,9 @@ class Graph2D(Graph):
             None
         """
         new_node = Node2D(value, x, y)
-        for node in self.nodes:
+        for node in list(self.nodes.values()):
             self.add_edge(node, new_node)
+        self.nodes[value] = new_node
         
     def add_edge(self, node1: 'Node', node2: 'Node'):
         """

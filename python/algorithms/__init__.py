@@ -1,4 +1,4 @@
-from .djikstra import dijkstra
+from .dijkstra import dijkstra
 from .breadth_first_search import breadth_first_search
 from .depth_first_search import depth_first_search
 
