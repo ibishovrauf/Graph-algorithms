@@ -22,6 +22,17 @@ class Graph:
         """
         self.nodes[value] = Node(value)
 
+    def add_nodes(self, values):
+        """
+        Add list of values to the graph
+
+        Args:
+            values (list): A list of values to be added as nodes to the graph.
+        """
+        for value in values:
+            self.add_node(value)
+            
+            
     def add_edge(self, value1, value2, weight=None):
         """
         Add an edge to the graph.
@@ -31,6 +42,7 @@ class Graph:
             value2: The value of the second node connected by the edge.
             weight (optional): The weight of the edge. Defaults to None.
         """
+        
         node1 = self.nodes[value1]
         node2 = self.nodes[value2]
         node1.add_neighbor(node2, self.directed, self.weighted, weight)
