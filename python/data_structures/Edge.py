@@ -46,6 +46,24 @@ class Edge:
             return self.weight
         return "The Edge is not weighted"
 
+    def get_node1(self):
+        """
+        Retrieves the starting node of the directed edge.
+
+        Returns:
+            Node: The starting node of the edge.
+        """
+        return self.node_1
+
+    def get_node2(self):
+        """
+        Retrieves the ending node of the directed edge.
+
+        Returns:
+            int or str: The ending node of the edge.
+        """
+        return self.node_2
+
     def __str__(self) -> str:
         """
         Get a string representation of the edge.
@@ -56,9 +74,3 @@ class Edge:
         if self.directed:
             return str(self.node_1) + "->" + str(self.node_2)
         return str(self.node_1) + "<->" + str(self.node_2)
-
-    def get_node1(self):
-        return self.node_1
-    
-    def get_node2(self):
-        return self.node_2
