@@ -120,7 +120,19 @@ class Graph:
         return self.weighted
 
     def get_node(self, value):
-        return self.nodes[value]
+        """
+        Retrieves a node from the graph based on its value.
+
+        Args:
+            value: The value identifying the node to retrieve.
+
+        Returns:
+            Node or str: The node corresponding to the given value if found in the graph.
+                        If the node with the given value is not found, returns an appropriate error message.
+        """
+        if value in self.nodes:
+            return self.nodes[value]
+        return f"The Node {value} is not in the graph"
 
 class Graph2D(Graph):
     """A 2D graph representation inheriting from Graph class."""

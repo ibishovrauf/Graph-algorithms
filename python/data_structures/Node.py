@@ -31,7 +31,7 @@ class Node:
             self.incoming_edges[node] = edge
             node.outgoing_edges[self] = edge
     
-    def get_weight(self, node):
+    def get_weight(self, node) -> float:
         """
         Get the weight of the edge between the current node and a neighbor node.
 
@@ -39,11 +39,11 @@ class Node:
             node (Node): The neighbor node.
 
         Returns:
-            int or str: The weight of the edge, or a message indicating no edge exists between the nodes.
+            float or str: The weight of the edge, or a message indicating no edge exists between the nodes.
         """
         edge = self.outgoing_edges.get(node, None)
         if not edge:
-            return "there is not edge between this nodes"
+            return "There is not edge between this nodes"
         return edge.get_weight()
 
     def get_incoming_nodes(self) -> list:
@@ -83,11 +83,29 @@ class Node:
         return list(self.outgoing_edges.values())
     
     def is_visited(self) -> bool:
+        """
+        Checks if the node has been visited.
+
+        Returns:
+            bool: True if the node has been visited, False otherwise.
+        """
         return self.visited
     
     def visit(self) -> None:
+        """
+        Marks the node as visited.
+        """
         self.visited = True
     
+    def get_value(self) -> str:
+        """
+        Retrieves the value of the node.
+
+        Returns:
+            str: The value of the node.
+        """
+        return self.value
+        
     def __str__(self) -> str:
         """
         Get a string representation of the node.
@@ -97,9 +115,6 @@ class Node:
         """
         return "Node " + self.value
 
-
-
-from math import sqrt
 
 class Node2D(Node):
     """A node in a 2D graph."""
