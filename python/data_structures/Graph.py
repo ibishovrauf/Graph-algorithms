@@ -1,4 +1,5 @@
 from .Node import Node, Node2D
+import numpy as np
 
 class Graph:
     def __init__(self, directed: bool = True, weighted: bool = False):
@@ -11,6 +12,7 @@ class Graph:
         """
         self.directed = directed
         self.weighted = weighted
+        self.adj = None
         self.nodes = {}
 
     def add_node(self, value):
@@ -31,8 +33,7 @@ class Graph:
         """
         for value in values:
             self.add_node(value)
-            
-            
+          
     def add_edge(self, value1, value2, weight=None):
         """
         Add an edge to the graph.
@@ -46,6 +47,7 @@ class Graph:
         node1 = self.nodes[value1]
         node2 = self.nodes[value2]
         node1.add_neighbor(node2, self.directed, self.weighted, weight)
+        self.adj = None
 
     def get_nodes(self):
         """
@@ -133,6 +135,74 @@ class Graph:
         if value in self.nodes:
             return self.nodes[value]
         return f"The Node {value} is not in the graph"
+
+    def construct_adjacency_matrix(self):
+        """
+        Constructs the adjacency matrix for the graph.
+
+        Raises:
+        - TypeError: If the graph is not weighted.
+
+        Note:
+        - This function assumes that the graph is weighted.
+        """
+        if not self.weighted:
+            raise TypeError("The Graph isn't weighted")
+        num_of_nodes = len(self.nodes)
+        adj = np.zeros((num_of_nodes, num_of_nodes))
+        mapping = {}
+        nodes = []
+
+        for index, (value, node) in enumerate(self.nodes.items()):
+            mapping[value] = index
+            nodes.append(node)
+        get_index = lambda x: (mapping[x[0]], mapping[x[1]])
+        for node in nodes:
+            for edge in node.get_outgoing_edges():
+                adj[get_index([node.get_value(), edge.get_node2().get_value()])] = edge.get_weight()
+        self.adj = adj
+
+    def get_adjacency_matrix(self):
+        """
+        Returns the adjacency matrix of the graph.
+
+        Raises:
+        - RuntimeError: If the adjacency matrix has not been constructed.
+
+        Returns:
+        - numpy.ndarray: The adjacency matrix of the graph.
+        """
+        if self.adj is None:
+            raise RuntimeError("Adjacency matrix has not been constructed. Please call a function to construct the adjacency matrix first.")
+        return self.adj
+
+    def get_index_of_node(self, value):
+        """
+        Returns the index of the node with the given value.
+
+        Parameters:
+        - value: The value of the node.
+
+        Returns:
+        - int: The index of the node.
+
+        Note:
+        - This function assumes that the value is unique among nodes.
+        """
+        return list(self.nodes.keys()).index(value)
+    
+    def get_node_val_from_index(self, index):
+        """
+        Returns the value of the node at the given index.
+
+        Parameters:
+        - index: The index of the node.
+
+        Returns:
+        - Any: The value of the node at the given index.
+        """
+        return list(self.nodes.keys())[index]
+
 
 class Graph2D(Graph):
     """A 2D graph representation inheriting from Graph class."""
