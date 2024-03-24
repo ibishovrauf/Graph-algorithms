@@ -3,7 +3,17 @@ from data_structures import Graph
 from algorithms import depth_first_search
 
 class TestDepthFirstSearch(unittest.TestCase):
+    """
+    Test case for the depth-first search algorithm.
+    """
     def test_dfs_recursive(self):
+        """
+        Test the depth-first search algorithm on a graph.
+        The graph has nodes 'A', 'B', 'C', 'D', 'E' with edges as follows:
+        'A' -> 'B', 'A' -> 'C', 'B' -> 'D', 'C' -> 'E'.
+        The depth-first search starts from node 'A'.
+        The expected result is ['A', 'B', 'D', 'C', 'E'].
+        """
         graph = Graph()
         graph.add_nodes(['A', 'B', 'C', 'D', 'E'])
         graph.add_edge('A', 'B')
