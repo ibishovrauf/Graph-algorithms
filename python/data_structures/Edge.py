@@ -74,3 +74,15 @@ class Edge:
         if self.directed:
             return str(self.node_1) + "->" + str(self.node_2)
         return str(self.node_1) + "<->" + str(self.node_2)
+    
+    def __contains__(self, item):
+
+        return item in [self.node_1.get_value(), self.node_2.get_value()]
+
+    def __sub__(self, item):
+        data = {self.node_1.get_value(), self.node_2.get_value()}
+        data.remove(item)
+        return data.pop()
+    
+    def __eq__(self, edge: object) -> bool:
+        return sorted(self.node_1.get_value() + self.node_2.get_value()) == sorted(edge.get_node1().get_value() + edge.get_node2().get_value())

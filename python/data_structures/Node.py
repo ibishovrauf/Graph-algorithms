@@ -41,10 +41,14 @@ class Node:
         Returns:
             float or str: The weight of the edge, or a message indicating no edge exists between the nodes.
         """
+        return self.get_edge(node).get_weight()
+    
+    def get_edge(self, node):
         edge = self.outgoing_edges.get(node, None)
         if not edge:
             return "There is not edge between this nodes"
-        return edge.get_weight()
+        return edge
+
 
     def get_incoming_nodes(self) -> list:
         """
@@ -150,10 +154,11 @@ class Node2D(Node):
             None
         """
         edge = Edge(self, node, weight=self.distance(node), weighted=True, directed=False)
+        edge1 = Edge(node, self, weight=self.distance(node), weighted=True, directed=False)
         self.outgoing_edges[node] = edge
+        self.incoming_edges[node] = edge1
         node.incoming_edges[self] = edge
-        self.incoming_edges[node] = edge
-        node.outgoing_edges[self] = edge
+        node.outgoing_edges[self] = edge1
 
     def distance(self, node) -> float:
         """

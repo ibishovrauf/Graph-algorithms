@@ -1,5 +1,6 @@
-from .Node import Node, Node2D
+from .Node import Node, Node2D, Edge
 import numpy as np
+import heapq
 
 class Graph:
     def __init__(self, directed: bool = True, weighted: bool = False):
@@ -99,9 +100,14 @@ class Graph:
         """
         if not self.weighted:
             return "The Graph is not weighted"
+        return self.get_edge(value1, value2).get_weight()
+
+    def get_edge(self, value1, value2):
+        if not self.weighted:
+            return "The Graph is not weighted"
         node1 = self.nodes[value1]
         node2 = self.nodes[value2]
-        return node1.get_weight(node2)
+        return node1.get_edge(node2)
 
     def is_directed(self):
         """
@@ -157,9 +163,10 @@ class Graph:
             mapping[value] = index
             nodes.append(node)
         get_index = lambda x: (mapping[x[0]], mapping[x[1]])
-        for node in nodes:
+        for node in nodes:            
             for edge in node.get_outgoing_edges():
-                adj[get_index([node.get_value(), edge.get_node2().get_value()])] = edge.get_weight()
+                adj[get_index([edge.get_node1().get_value(), edge.get_node2().get_value()])] = edge.get_weight()
+                adj[get_index([edge.get_node2().get_value(), edge.get_node1().get_value()])] = edge.get_weight()
         self.adj = adj
 
     def get_adjacency_matrix(self):
