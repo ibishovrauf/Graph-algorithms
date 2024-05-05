@@ -14,8 +14,6 @@ def greedy(graph: Graph2D):
     total_dist = 0
     for _ in range(n):
         plt.clf()
-        img = plt.imread(r'C:\Users\raufi\Downloads\Azerbaijan_adm_location_map.svg.png')  # Path to your background image
-        plt.imshow(img, extent=[-4, 4, -4, 4])  # Adjust extent based on your graph coordinates
         G = nx.Graph()
         for node_key, node_value in graph.nodes.items():
             color = "#E0E0E0"
@@ -60,6 +58,6 @@ def read_graph_from_pickle(pickle_file, graph):
     return graph
 
 if __name__ == "__main__":
-    pickle_file = './data/test.pkl'
+    pickle_file = './data/6cities.pkl'
     graph = read_graph_from_pickle(pickle_file, 0)
     print(greedy(graph))

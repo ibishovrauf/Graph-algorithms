@@ -13,8 +13,6 @@ def brute_force_TSP(graph: Graph2D):
     min_dist = math.inf
     for permutation in perm_list:
         plt.clf()
-        img = plt.imread(r'C:\Users\raufi\Downloads\Azerbaijan_adm_location_map.svg.png')  # Path to your background image
-        plt.imshow(img, extent=[-4, 4, -4, 4])  # Adjust extent based on your graph coordinates
         G = nx.Graph()
         for node_key, node_value in graph.nodes.items():
             G.add_node(node_key, pos=(node_value.x, node_value.y))
@@ -46,6 +44,7 @@ def read_graph_from_pickle(pickle_file, graph):
     return graph
 
 if __name__ == "__main__":
-    pickle_file = './data/test.pkl'
+    pickle_file = './data/6cities.pkl'
     graph = read_graph_from_pickle(pickle_file, 0)
+    print("jf")
     print(brute_force_TSP(graph))

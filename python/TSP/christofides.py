@@ -137,6 +137,6 @@ def read_graph_from_pickle(pickle_file, graph):
     return graph
 
 if __name__ == "__main__":
-    pickle_file = './data/test.pkl'
+    pickle_file = './data/6cities.pkl'
     graph = read_graph_from_pickle(pickle_file, 0)
     print(christofides(graph))

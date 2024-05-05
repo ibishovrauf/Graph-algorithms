@@ -1,28 +1,19 @@
-from data_structures import Graph
+from data_structures import Graph2D
 from visulization import save_graph
 
 def main():
-    graph = Graph(weighted=True)
-
-    # Add nodes to the graph
-    graph.add_node("A")
-    graph.add_node("B")
-    graph.add_node("C")
-    graph.add_node("D")
-    graph.add_node("F")
-    graph.add_node("E")
-
-    graph.add_edge('A', 'B', weight=12)
-    graph.add_edge('C', 'D', weight=12)
-    graph.add_edge('D', 'B', weight=12)
-    graph.add_edge('C', 'B', weight=12)
-    graph.add_edge('A', 'D', weight=12)
-    graph.add_edge('A', 'C', weight=12)
-
-    print("Nodes:", graph.get_nodes())
-    print("Edges:", graph.get_edges())
-    graph.construct_adjacency_matrix()
-    print(graph.get_adjacency_matrix())
+    graph = Graph2D()
+    
+    graph.add_node('A', 8, 0)
+    graph.add_node('B', 7, -3)
+    graph.add_node('C', 5, -5)
+    graph.add_node('E', 0, -7)
+    graph.add_node('F', 3, 6)
+    graph.add_node('H', -7, -3)
+    graph.add_node('W', -8, 0)
+    graph.add_node('R', -7, 3)
+    graph.add_node('T', -5, 5)
+    save_graph(graph, "test1.pkl")
 
 if __name__ == "__main__":
     main()
