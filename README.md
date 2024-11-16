@@ -98,5 +98,5 @@ This project is licensed under the MIT License.
 
 ## Authors
 
-Rauf Ibishov, Rita Gayitmazova
+Rauf Ibishov, Rita Gayitmazova  
 University Project  
