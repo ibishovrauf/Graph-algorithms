@@ -96,7 +96,7 @@ Feel free to fork this repository, add features or algorithms, and submit pull r
 
 This project is licensed under the MIT License.
 
-## Author
+## Authors
 
-Rauf Ibishov  
+Rauf Ibishov, Rita Gayitmazova
 University Project  
